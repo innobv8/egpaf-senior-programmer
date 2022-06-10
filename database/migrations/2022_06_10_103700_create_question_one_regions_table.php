@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQuestionThreesTable extends Migration
+class CreateQuestionOneRegionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateQuestionThreesTable extends Migration
      */
     public function up()
     {
-        Schema::create('question_threes', function (Blueprint $table) {
+        Schema::create('question_one_regions', function (Blueprint $table) {
             $table->id();
-            $table->string('string');
-            $table->boolean('disabled')->default(false);
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateQuestionThreesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('question_threes');
+        Schema::dropIfExists('question_one_regions');
     }
 }

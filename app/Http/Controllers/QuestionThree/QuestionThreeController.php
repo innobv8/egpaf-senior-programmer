@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\QuestionThree;
 
 use App\Http\Controllers\Controller;
-use App\Models\QuestionThree;
-use Illuminate\Http\Request;
+use App\Models\QuestionThreeString;
 use Illuminate\Support\Facades\Response;
 
 class QuestionThreeController extends Controller
@@ -21,12 +20,12 @@ class QuestionThreeController extends Controller
         $generateString = substr(str_shuffle($values), 0, $length);
 
         // Check if Generated Alphanumeric String exists in Database
-        $checkExisting = QuestionThree::where('string', $generateString)->first();
+        $checkExisting = QuestionThreeString::where('string', $generateString)->first();
 
         // If Generated String does not exist in database
         if($checkExisting === null){
             // Check if there are any disabled strings, and enable one of those instead of creating a new string entry
-            $checkDisabled = QuestionThree::where('disabled', true)->get();
+            $checkDisabled = QuestionThreeString::where('disabled', true)->get();
 
             // If disabled strings are found, pick a random one and enable it
             if($checkDisabled->count() > 0){
@@ -40,7 +39,7 @@ class QuestionThreeController extends Controller
             }
             // If no disabled strings are found, save the generated string
             else{
-                QuestionThree::create([
+                QuestionThreeString::create([
                     'string' => $generateString
                 ]);
 
@@ -56,7 +55,7 @@ class QuestionThreeController extends Controller
     public function disable($string)
     {
         // Check if supplied string exists in the database
-        $findString = QuestionThree::where('string', $string)->first();
+        $findString = QuestionThreeString::where('string', $string)->first();
 
         // If string exists in database
         if($findString !== null){
