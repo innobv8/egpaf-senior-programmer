@@ -7,6 +7,10 @@ Instructions for testing:
 
 -	Clone the repository
 -	Perform composer install in the terminal
+-	Copy the .env.example file to .env
+-	Perform php artisan:key-generate
+-	Edit .env database values
+-	Perform php artisan migrate:fresh --seed to setup database
 
 
 Question 1:
